@@ -3,8 +3,8 @@ from typing import Optional
 
 from jose import jwt, JWTError
 
-from auth.schemas import TokenData
-from core.config import access_token_expiry, SECRET_KEY, ALGORITHM
+from utils.auth.schemas import TokenData
+from utils.core.config import access_token_expiry, SECRET_KEY, ALGORITHM
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):

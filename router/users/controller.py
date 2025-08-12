@@ -2,11 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi import status
 from fastapi_utils.cbv import cbv
 
-from auth.jwt import create_access_token
-from auth.schemas import Token, TokenData
-from auth.service import get_current_user
-from users.schemas import UserLogin, UserInfo
-from users.service import UserService
+from utils.auth.jwt import create_access_token
+from utils.auth.schemas import Token, TokenData
+from utils.auth.service import get_current_user
+from router.users.schemas import UserLogin, UserInfo
+from router.users.service import UserService
 
 router = APIRouter()
 

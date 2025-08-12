@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>네이버 로그인</title>
+    <style>
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Malgun Gothic', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px 30px;
+            border: 1px solid #ddd;
+            width: 360px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+            border-radius: 8px;
+        }
+
+        .naver-logo {
+            display: block;
+            margin: 0 auto 30px;
+            width: 155px;
+            height: 30px;
+            background-image: url("/static/imgs/로고_네이버.png");
+            background-position: 0 -51px;
+            background-repeat: no-repeat;
+            background-size: 244px 107px;
+        }
+
+        .login-button {
+            background-color: #03c75a;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .login-button:hover {
+            background-color: #02b14c;
+        }
+
+        .bottom-links {
+            margin-top: 20px;
+            font-size: 13px;
+            text-align: center;
+            color: #555;
+        }
+
+        .profile {
+            margin-top: 16px;
+            padding: 12px;
+            background: #f3f6fa;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <a class="naver-logo" href="/"></a>
+
+    {% if not user %}
+    <!-- OAuth: /login 으로 바로 이동 -->
+    <form method="get" action="/login">
+        <button type="submit" class="login-button">네이버로 로그인</button>
+    </form>
+    {% else %}
+    <div class="profile">
+        <div><b>아이디</b>: {{ user.id or '' }}</div>
+        <div><b>이름</b>: {{ user.name or '' }}</div>
+        <div><b>별명</b>: {{ user.nickname or '' }}</div>
+        <div><b>이메일</b>: {{ user.email or '' }}</div>
+        <div><b>연락처</b>: {{ user.mobile or '' }}</div>
+        <div><b>주소</b>: {{ user.address or '' }}</div>
+        <div><b>성별</b>: {{ user.gender or '' }}</div>
+        <div><b>생일</b>: {{ user.birthday or '' }}</div>
+        <div><b>연령대</b>: {{ user.age or '' }}</div>
+        <div><b>출생연도</b>: {{ user.birthyear or '' }}</div>
+        <div style="margin-top:10px;">
+            {% if user.profile_image %}
+            <img src="{{ user.profile_image }}" alt="프로필 사진" style="max-width:80px; border-radius:50%;">
+            {% else %}
+            <span>프로필 사진 없음</span>
+            {% endif %}
+        </div>
+        <div style="margin-top:10px;"><a href="/logout">로그아웃</a></div>
+    </div>
+    {% endif %}
+
+    <div class="bottom-links">
+        <a href="#">아이디 찾기</a> |
+        <a href="#">비밀번호 찾기</a> |
+        <a href="#">회원가입</a>
+    </div>
+</div>
+</body>
+</html>

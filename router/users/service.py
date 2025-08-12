@@ -1,6 +1,6 @@
 from typing import Optional
 
-from users.schemas import UserLogin, UserInfo
+from router.users.schemas import UserLogin, UserInfo
 
 FAKE_USERS_DB = {
     'john': {'username': 'john', 'password': 'secret', 'full_name': 'John Doe'}
